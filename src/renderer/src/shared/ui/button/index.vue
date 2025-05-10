@@ -1,0 +1,70 @@
+<script setup lang="ts">
+</script>
+
+<template>
+    <button class="btn">
+        <slot name="button-content"></slot>
+    </button>
+</template>
+
+<style>
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 16px;
+    font-weight: bold;
+    
+    position: relative;
+    cursor: pointer;
+
+    width: 100%;
+    height: 100%;
+    min-width: 50px;
+    min-height: 50px;
+    max-width: 300px;
+    max-height: 50px;
+    
+    margin: 10px;
+    padding: 10px;
+    
+    border-radius: 10px;
+    border: 1px solid #979797;
+    
+    color: #d3d3d3;
+    background-color: #2c2c2c;
+    
+    outline: none;
+
+    transition: 0.3s;
+    z-index: 1;
+}
+
+.btn:focus {
+    outline: 2px solid #78ff9a;
+}
+
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #246434;
+    border-radius: 10px;
+    z-index: -1;
+    transition: 0.3s;
+}
+
+.btn:hover::after {
+    transform: translate(5px, 5px);
+    background-color: #308b47;
+}
+
+.btn:hover {
+    transform: translate(-5px, -5px);
+}
+
+</style>
