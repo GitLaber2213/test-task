@@ -1,0 +1,16 @@
+.productDescription {
+  width: 100%;
+  max-width: 275px;
+  height: 100%;
+  margin: 10px 0;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
+.productPrice {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}

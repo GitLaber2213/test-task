@@ -26,7 +26,7 @@ import UploadFile from '@renderer/features/upload-file/ui/index.vue';
     background-color: #292929;
     
     border-radius: 10px;
-    border-bottom: 2px solid #41a372;
-    border-top: 2px solid #41a372;
+    border-bottom: 2px solid #7bffcc;
+    border-top: 2px solid #7bffcc;
 }
 </style>

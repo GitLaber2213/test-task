@@ -1,30 +1,4 @@
-<script setup lang="ts">
-import { defineProps } from 'vue';
-
-
-const props = defineProps<{
-    callback: (event: Event) => void,
-    loading: boolean,
-    fileName: string | null,
-}>();
-    
-
-</script>
-
-
-<template>
-    <div class="file-input-container">
-        <input type="file" id="file-upload" @change="callback" accept="application/json, text/plain"/>  
-        <label for="file-upload" class="file-input-label">
-            <slot name="input-content"></slot>
-        </label>
-        <div v-if="fileName" class="file-name">{{ fileName }}</div>
-    </div>
-</template>
-
-
-<style>
-.file-input-container {
+.fileInputContainer {
     position: relative;
     display: flex;
     justify-content: center;
@@ -35,7 +9,7 @@ input[type="file"] {
     display: none;
 }
 
-.file-input-label {
+.fileInputLabel {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -68,11 +42,11 @@ input[type="file"] {
     z-index: 1;
 }
 
-.file-input-label:focus {
+.fileInputLabel:focus {
     outline: 2px solid #78ff9a;
 }
 
-.file-input-label::after {
+.fileInputLabel::after {
     content: '';
     position: absolute;
     top: 0;
@@ -85,12 +59,11 @@ input[type="file"] {
     transition: 0.3s;
 }
 
-.file-input-label:hover::after {
+.fileInputLabel:hover::after {
     transform: translate(5px, 5px);
     background-color: #308b47;
 }
 
-.file-input-label:hover {
+.fileInputLabel:hover {
     transform: translate(-5px, -5px);
 }
-</style>

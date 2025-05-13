@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import Input from '@renderer/shared/ui/input/index.vue';
+import Input from '@renderer/shared/ui/input/file-input.vue';
 
 
 const fileInput = ref<string | ArrayBuffer | null>('');

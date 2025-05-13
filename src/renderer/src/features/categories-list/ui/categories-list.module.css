@@ -1,0 +1,11 @@
+.categoriesContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-height: 300px;
+}
+
+.categoriesContent {
+    display: flex;
+    align-items: center;
+}
