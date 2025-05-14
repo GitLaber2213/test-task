@@ -1,6 +1,6 @@
-import Footer from '@renderer/widgets/footer/index.vue';
-import Header from '@renderer/widgets/header/index.vue';
-import Products from '@renderer/widgets/products/index.vue';
+import Footer from './footer/index.vue';
+import Header from './header/index.vue';
+import Products from './products/index.vue';
 
 
 export {

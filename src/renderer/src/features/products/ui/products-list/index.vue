@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import styles from './product-list.module.css';
 import { IProductContainer, IProductListModuleState } from '@renderer/shared/types/types';
+import { useRouter, useRoute, Router, RouteLocationNormalizedLoaded } from 'vue-router';
 import { ROUTES } from '@renderer/shared/';
 import { Card } from '@renderer/entity';
 import { computed } from 'vue';
 import { useStore } from 'vuex';
-import { useRouter, useRoute, Router, RouteLocationNormalizedLoaded } from 'vue-router';
 
 const router: Router = useRouter();
 const route: RouteLocationNormalizedLoaded = useRoute();

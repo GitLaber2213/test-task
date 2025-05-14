@@ -20,6 +20,10 @@ export interface ICategory {
   logo?: string;
 }
 
+export interface ICategoryWithChildren extends ICategory {
+    children: ICategoryWithChildren[];
+}
+
 export interface ICategoryListModuleState {
   groups: ICategory[];
   searchValue: string;

@@ -1,4 +1,4 @@
-import { ICategory, ICategoryListModuleState } from "@renderer/shared/types/types";
+import { ICategory, ICategoryListModuleState, ICategoryWithChildren } from "@renderer/shared/types/types";
 import { Module } from "vuex";
 
 const categoriesListModule: Module<ICategoryListModuleState, any> = {
@@ -19,7 +19,7 @@ const categoriesListModule: Module<ICategoryListModuleState, any> = {
         updateSearchValue({ commit }, newValue: string): void {
             commit('setSearchValue', newValue);
         },
-        updateCatalogs({commit}, catalogs: ICategory[]): void {
+        updateCatalogs({ commit }, catalogs: ICategory[]): void {
             commit('setGroups', catalogs);
         },
     },
@@ -27,6 +27,34 @@ const categoriesListModule: Module<ICategoryListModuleState, any> = {
         getSearchCatalogs: (state) => (searchText: string): ICategory[] => {
             return state.groups.filter((item) => item?.name?.toLowerCase().includes(searchText.toLowerCase()))
         },
+        getFilteredGroupedCategories: (state) => (searchText: string): ICategoryWithChildren[] => {
+            const map: Map<number, ICategoryWithChildren> = new Map();
+            const roots: ICategoryWithChildren[] = [];
+
+            
+            const filtered: ICategory[] = state.groups.filter(item =>
+                item?.name?.toLowerCase().includes(searchText.toLowerCase())
+            );
+
+
+            filtered.forEach(group => {
+                map.set(group.id, { ...group, children: [] });
+            });
+
+
+            filtered.forEach(group => {
+                const currentNode = map.get(group.id)!;
+                if (group.idParent === null) {
+                    roots.push(currentNode);
+                } else {
+                    const parentNode = map.get(group.idParent);
+                    if (parentNode) {
+                        parentNode.children.push(currentNode);
+                    }
+                }
+            });
+            return roots;
+        }
     },
 };
 

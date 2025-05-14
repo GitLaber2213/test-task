@@ -5,7 +5,6 @@ const store = createStore({
     modules: {
         categoriesList: categoriesListModule,
         productsList: productsListModule,
-        uploadFile: {},
     },
 });
 

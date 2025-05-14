@@ -1,0 +1,43 @@
+.groupedCardContainer {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    position: relative;
+
+    width: 100%;
+    max-width: 700px;
+    min-height: 100px;
+
+    padding: 10px;
+    margin: 20px;
+
+    border: 1px solid #979797;
+    border-radius: 10px;
+}
+
+.groupedCardContainerHeader {
+    display: flex;
+    align-items: center;
+    position: absolute;
+
+    top: -18px;
+
+    
+    font-size: 16px;
+
+    background-color: #292929;
+}
+
+.groupedCardContainerHeader div {
+    padding: 0 5px;
+    display: flex;
+    align-items: center;
+}
+
+.groupedCardContainerContent {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}

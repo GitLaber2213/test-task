@@ -3,8 +3,6 @@ import { ProductInfoPage, ProductsPage, _404Page } from '@renderer/pages/';
 import { ROUTES } from '@renderer/shared/';
 
 
-
-
 const routes: Array<RouteRecordRaw> = [
     {
         path: '/',
