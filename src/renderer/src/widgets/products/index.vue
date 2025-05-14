@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import ProductsList from '@renderer/features/products/ui/products-list/index.vue';
-import Search from '@renderer/features/search/ui/index.vue';
+import { ProductsList, Search } from '@renderer/features/';
 </script>
 
 <template>

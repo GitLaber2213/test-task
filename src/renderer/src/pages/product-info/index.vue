@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ProductInfo from '@renderer/features/products/ui/product-info/index.vue';
+import { ProductInfo } from '@renderer/features/';
 </script>
 
 

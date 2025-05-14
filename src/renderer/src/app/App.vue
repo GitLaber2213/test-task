@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import Header from '@renderer/widgets/header/index.vue';
-import Footer from '@renderer/widgets/footer/index.vue';
-import Scroll from '@renderer/shared/ui/scroll/index.vue';
+import { Header, Footer } from '@renderer/widgets/';
+import { Scroll } from '@renderer/shared/';
 </script>
 
 
@@ -9,13 +8,13 @@ import Scroll from '@renderer/shared/ui/scroll/index.vue';
   <div class="app-container">
     <Header />
 
-      <Scroll>
-        <template #scroll-content>
-          <div class="route-container">
-            <RouterView />
-          </div>
-        </template>
-      </Scroll>
+    <Scroll>
+      <template #scroll-content>
+        <div class="route-container">
+          <RouterView />
+        </div>
+      </template>
+    </Scroll>
 
     <Footer />
   </div>

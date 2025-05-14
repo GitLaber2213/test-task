@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import UploadFile from '@renderer/features/upload-file/ui/index.vue';
+import { UploadFile } from '@renderer/features/';
 </script>
 
 
@@ -24,7 +24,7 @@ import UploadFile from '@renderer/features/upload-file/ui/index.vue';
     margin: 10px;
     margin-top: 0;
     background-color: #292929;
-    
+
     border-radius: 10px;
     border-bottom: 2px solid #7bffcc;
     border-top: 2px solid #7bffcc;

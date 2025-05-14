@@ -1,16 +1,15 @@
 <script setup lang="ts">
-import Form from '@renderer/entity/form/ui/index.vue';
-import Button from '@renderer/shared/ui/button/index.vue';
-import Back from '@renderer/shared/assets/previous.png';
+import { Form } from '@renderer/entity/';
+import {Button, PreviousIcon} from '@renderer/shared/';
+import { IProduct, IProductContainer, IProductListModuleState } from '@renderer/shared/types/types';
 import styles from './product-info.module.css';
 
-import { IProduct, IProductContainer, IProductListModuleState } from '@renderer/shared/types/types';
 import { RouteLocationNormalizedLoaded, Router, useRoute, useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 import { computed } from 'vue';
 
 const router: Router = useRouter();
-const route: RouteLocationNormalizedLoaded= useRoute();
+const route: RouteLocationNormalizedLoaded = useRoute();
 
 const productIdParam = route.params.productId;
 const productId = typeof productIdParam === 'string' ? parseInt(productIdParam) : 0;
@@ -34,7 +33,7 @@ const goBackHandleClick = () => router.back();
         <div :class="styles.productInfoHeader">
             <Button @click="goBackHandleClick">
                 <template #button-content>
-                    <img :src="Back" alt="Назад" width="40" height="40" />
+                    <img :src="PreviousIcon" alt="Назад" width="40" height="40" />
                 </template>
             </Button>
             <h1>Информация о продукте</h1>

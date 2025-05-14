@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import Card from '@renderer/entity/card/ui/index.vue';
 import styles from './product-list.module.css';
+import { IProductContainer, IProductListModuleState } from '@renderer/shared/types/types';
+import { ROUTES } from '@renderer/shared/';
+import { Card } from '@renderer/entity';
 import { computed } from 'vue';
 import { useStore } from 'vuex';
 import { useRouter, useRoute, Router } from 'vue-router';
-import { IProductContainer, IProductListModuleState } from '@renderer/shared/types/types';
-import { ROUTES } from '@renderer/shared/constants/route-contants';
 
 const router: Router = useRouter();
 const route = useRoute();

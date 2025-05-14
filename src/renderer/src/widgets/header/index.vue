@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import Categories from '@renderer/features/categories-list/ui/index.vue';
-import Search from '@renderer/features/search/ui/index.vue';
+import {CategoriesList, Search} from '@renderer/features/';
 </script>
 
 <template>
     <div class="header-container">
         <Search :dispatch-path="'categoriesList/updateSearchValue'" placeholder="Поиск каталогов" />
-        <Categories />
+        <CategoriesList />
     </div>
 </template>
 

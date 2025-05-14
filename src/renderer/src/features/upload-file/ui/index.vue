@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import Input from '@renderer/shared/ui/input/file-input.vue';
+import { FileInput } from '@renderer/shared/';
 
 
 const fileInput = ref<string | ArrayBuffer | null>('');
@@ -31,11 +31,11 @@ const onFileChange = (event: Event) => {
 </script>
 
 <template>
-    <Input :callback="onFileChange" :loading="false" :fileName="fileName">
+    <FileInput :callback="onFileChange" :loading="false" :fileName="fileName">
     <template #input-content>
         Загрузить данные из файла
     </template>
-    </Input>
+    </FileInput>
     <div>
         {{ fileInput }}
     </div>
