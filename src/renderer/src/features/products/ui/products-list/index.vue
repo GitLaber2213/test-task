@@ -5,10 +5,10 @@ import { ROUTES } from '@renderer/shared/';
 import { Card } from '@renderer/entity';
 import { computed } from 'vue';
 import { useStore } from 'vuex';
-import { useRouter, useRoute, Router } from 'vue-router';
+import { useRouter, useRoute, Router, RouteLocationNormalizedLoaded } from 'vue-router';
 
 const router: Router = useRouter();
-const route = useRoute();
+const route: RouteLocationNormalizedLoaded = useRoute();
 const store = useStore<{ productsList: IProductListModuleState }>();
 
 const catalogId = computed<number>(() => {

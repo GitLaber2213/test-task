@@ -3,7 +3,6 @@ import { Form } from '@renderer/entity/';
 import {Button, PreviousIcon} from '@renderer/shared/';
 import { IProduct, IProductContainer, IProductListModuleState } from '@renderer/shared/types/types';
 import styles from './product-info.module.css';
-
 import { RouteLocationNormalizedLoaded, Router, useRoute, useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 import { computed } from 'vue';

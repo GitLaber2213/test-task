@@ -2,14 +2,18 @@
 import { ref } from 'vue';
 import { FileInput } from '@renderer/shared/';
 import { useStore } from 'vuex';
+import { ICategory, IProductContainer } from '@renderer/shared/types/types';
 
 
-const store = useStore();
+const store = useStore<{
+    dispatch: (type: string, payload: ICategory) => void
+}>();
+
 const fileInput = ref<string | ArrayBuffer | null>('');
 const fileName = ref<string | null>(null);
 
 
-const onFileChange = async (event: Event) => {
+const onFileChange = async (event: Event): Promise<void> => {
     const input = event.target as HTMLInputElement;
     const file = input.files?.[0];
 
@@ -17,12 +21,12 @@ const onFileChange = async (event: Event) => {
         fileName.value = file.name;
 
         const reader = new FileReader();
-        reader.onload = async (e) => {
+        reader.onload = async (e: ProgressEvent<FileReader>) => {
 
             const jsonData = e.target?.result;
             if (typeof jsonData === 'string') {
                 try {
-                    const data = JSON.parse(jsonData);
+                    const data: {groups: ICategory[], items: IProductContainer[]} = JSON.parse(jsonData);
                     store.dispatch('categoriesList/updateCatalogs', data.groups);
                     store.dispatch('productsList/updateProducts', data.items);
                 } catch (error) {
@@ -48,5 +52,3 @@ const onFileChange = async (event: Event) => {
         {{ fileInput }}
     </div>
 </template>
-
-<style></style>

@@ -10,7 +10,7 @@ const props = defineProps<{
 }>();
 
 const store = useStore<{
-    dispatch: (type: string, payload: any) => void;
+    dispatch: (type: string, payload: string) => void;
 }>();
 const inputValue = ref<string>('');
 
