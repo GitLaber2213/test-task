@@ -1,40 +1,48 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { FileInput } from '@renderer/shared/';
+import { useStore } from 'vuex';
 
 
+const store = useStore();
 const fileInput = ref<string | ArrayBuffer | null>('');
 const fileName = ref<string | null>(null);
 
 
-const onFileChange = (event: Event) => {
+const onFileChange = async (event: Event) => {
     const input = event.target as HTMLInputElement;
     const file = input.files?.[0];
 
     if (file) {
         fileName.value = file.name;
+
         const reader = new FileReader();
-        reader.onload = () => {
+        reader.onload = async (e) => {
 
-            const lines = reader.result.split('\n');
-            lines.forEach(element => {
-                console.log(element);
-            });
-
-            fileInput.value = reader.result;
+            const jsonData = e.target?.result;
+            if (typeof jsonData === 'string') {
+                try {
+                    const data = JSON.parse(jsonData);
+                    store.dispatch('categoriesList/updateCatalogs', data.groups);
+                    store.dispatch('productsList/updateProducts', data.items);
+                } catch (error) {
+                    alert(`Ошибка при парсинге JSON: ${error}`);
+                };
+            };
+            
         };
         reader.readAsText(file);
+    } else {
+        alert("Ошибка загрузки файла. Попробуйте еще раз");
     };
 };
-
-
 </script>
 
 <template>
     <FileInput :callback="onFileChange" :loading="false" :fileName="fileName">
-    <template #input-content>
-        Загрузить данные из файла
-    </template>
+        <template #input-content>
+            Загрузить данные из файла
+        </template>
     </FileInput>
     <div>
         {{ fileInput }}

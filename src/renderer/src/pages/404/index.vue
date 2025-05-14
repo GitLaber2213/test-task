@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { _404Icon } from '@renderer/shared/';
+
 </script>
 
 

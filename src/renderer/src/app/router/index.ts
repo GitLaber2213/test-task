@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import ProductsPage from '@renderer/pages/products/index.vue';
-import Page404 from '@renderer/pages/404/index.vue';
-import ProductInfoPage from '@renderer/pages/product-info/index.vue';
-import { ROUTES } from '@renderer/shared/constants/route-contants';
+import { ProductInfoPage, ProductsPage, _404Page } from '@renderer/pages/';
+import { ROUTES } from '@renderer/shared/';
+
+
+
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -25,9 +26,10 @@ const routes: Array<RouteRecordRaw> = [
     },
     {
         path: '/:pathMatch(.*)*',
-        component: Page404
+        component: _404Page
     }
 ];
+
 
 
 const router = createRouter({
@@ -35,5 +37,14 @@ const router = createRouter({
     routes: routes
 });
 
+router.beforeEach((to, from, next) => {
+    console.log(from);
+    const path = to.fullPath;
 
+    if (path.endsWith('index.html')) {
+        next({ path: ROUTES.CATALOG });
+    } else {
+        next();
+    }
+});
 export default router;

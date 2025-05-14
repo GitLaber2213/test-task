@@ -1,6 +1,5 @@
 import { createStore } from 'vuex'
-import productsListModule  from "@renderer/features/products/model/products-list.slice";
-import categoriesListModule  from "@renderer/features/categories-list/model/categories-list.slice";
+import { categoriesListModule, productsListModule } from '@renderer/features/';
 
 const store = createStore({
     modules: {

@@ -4,7 +4,7 @@ import { ProductsList, Search } from '@renderer/features/';
 
 <template>
     <div class="search-container">
-        <Search :dispatch-path="'productsList/updateSearchValue'" placeholder="Поиск товаров" />
+        <Search dispatch-path="productsList/updateSearchValue" placeholder="Поиск товаров" />
     </div>
     <ProductsList />
 </template>
