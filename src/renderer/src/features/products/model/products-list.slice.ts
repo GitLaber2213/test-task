@@ -28,11 +28,7 @@ const productsListModule: Module<IProductListModuleState, any> = {
             return state.items.find(item => item.id === productId);
         },
         getProductsByGroupId: (state) => (id: number, searchText: string): IProductContainer[] => {
-            if (!id) {
-                return state.items?.filter(item => item?.idGroup === null)
-            } else {
-                return state.items?.filter(item => item?.idGroup === id && item?.product?.name?.toLowerCase().includes(searchText.toLowerCase()));
-            }
+            return state.items?.filter(item => item?.idGroup === id && item?.product?.name?.toLowerCase().includes(searchText.toLowerCase()));
         },
     },
 };

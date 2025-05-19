@@ -14,6 +14,7 @@ const categories = computed<ICategoryWithChildren[] | null>(() => store.getters[
 const pushToCatalog = (id: number): void => {
     router.push({ name: ROUTES.CATALOG, params: { catalogId: id } });
 };
+
 </script>
 
 <template>

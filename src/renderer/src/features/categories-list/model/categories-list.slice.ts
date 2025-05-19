@@ -24,37 +24,44 @@ const categoriesListModule: Module<ICategoryListModuleState, any> = {
         },
     },
     getters: {
-        getSearchCatalogs: (state) => (searchText: string): ICategory[] => {
-            return state.groups.filter((item) => item?.name?.toLowerCase().includes(searchText.toLowerCase()))
-        },
         getFilteredGroupedCategories: (state) => (searchText: string): ICategoryWithChildren[] => {
-            const map: Map<number, ICategoryWithChildren> = new Map();
-            const roots: ICategoryWithChildren[] = [];
-
-            
-            const filtered: ICategory[] = state.groups.filter(item =>
-                item?.name?.toLowerCase().includes(searchText.toLowerCase())
+            const nodeMap: Map<number, ICategoryWithChildren> = new Map(
+                state.groups.map(item => [item.id, { ...item, children: [] }])
             );
 
-
-            filtered.forEach(group => {
-                map.set(group.id, { ...group, children: [] });
-            });
-
-
-            filtered.forEach(group => {
-                const currentNode = map.get(group.id)!;
-                if (group.idParent === null) {
-                    roots.push(currentNode);
-                } else {
-                    const parentNode = map.get(group.idParent);
-                    if (parentNode) {
+            state.groups.forEach(item => {
+                if (item.idParent !== null) {
+                    const parentNode = nodeMap.get(item.idParent);
+                    const currentNode = nodeMap.get(item.id);
+                    if (parentNode && currentNode) {
                         parentNode.children.push(currentNode);
                     }
                 }
             });
+
+            const filterNode = (node: ICategoryWithChildren): ICategoryWithChildren | null => {
+                const nameMatches = node.name.toLowerCase().includes(searchText.toLowerCase());
+
+                const filteredChildren = node.children
+                    .map(child => filterNode(child))
+                    .filter(Boolean) as ICategoryWithChildren[];
+
+                if (nameMatches || filteredChildren.length > 0) {
+                    return {
+                        ...node,
+                        children: filteredChildren,
+                    };
+                }
+                return null;
+            };
+
+            const roots = Array.from(nodeMap.values())
+                .filter(node => node.idParent === null)
+                .map(node => filterNode(node))
+                .filter(Boolean) as ICategoryWithChildren[];
+
             return roots;
-        }
+        },
     },
 };
 

@@ -31,6 +31,7 @@ const onFileChange = async (event: Event): Promise<void> => {
                     store.dispatch('categoriesList/updateCatalogs', data.groups);
                     store.dispatch('productsList/updateProducts', data.items);
                 } catch (error) {
+                    fileName.value = '';
                     alert(`Ошибка при парсинге JSON: ${error}`);
                 };
             };
